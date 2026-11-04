@@ -18,7 +18,7 @@ controller:
     # ——— ⭐ 速度模式（选做 7）———
     #   base  = /cmd_vel 直接当作【底盘坐标系】速度（默认）
     #   world = /cmd_vel 当作【全局坐标系】速度，先用 tf 转到 base_link 再执行
-    frame_mode: base
+    frame_mode: world    # IMU 修正后改用世界系
     world_frame: odom        # 全局坐标系名（odom 或 map）
 
     # ——— ⭐ 特色功能：加速度限制（0 = 关闭，瞬间响应）———
