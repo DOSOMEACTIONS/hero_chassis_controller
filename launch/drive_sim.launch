@@ -1,0 +1,11 @@
+<launch>
+  <!-- ① 起 Gazebo + 英雄底盘（复用描述包的 launch） -->
+  <include file="$(find rm_description_for_task)/launch/hero.launch"/>
+
+  <!-- ② 把控制器的参数（关节名 / 力矩 / 时长）load 进参数服务器 -->
+  <rosparam file="$(find hero_chassis_controller)/config/controllers.yaml" command="load"/>
+
+  <!-- ③ 加载并启动我们的控制器 -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        output="screen" args="controller/drive_controller"/>
+</launch>

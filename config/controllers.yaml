@@ -1,0 +1,52 @@
+controller:
+  drive_controller:
+    type: hero_chassis_controller/DriveController
+    joints:
+      - left_front_wheel_joint
+      - right_front_wheel_joint
+      - left_back_wheel_joint
+      - right_back_wheel_joint
+    effort: 0.5
+    duration: 3.0
+    left_sign: 1.0
+    right_sign: 1.0
+
+    # —— 逆运动学 + 比例控制 ——
+    wheel_radius: 0.07625    # 轮子半径（m）
+    k_kin: 0.4               # (轮距 0.4 + 轮基 0.4) / 2
+
+    # ——— ⭐ 速度模式（选做 7）———
+    #   base  = /cmd_vel 直接当作【底盘坐标系】速度（默认）
+    #   world = /cmd_vel 当作【全局坐标系】速度，先用 tf 转到 base_link 再执行
+    frame_mode: base
+    world_frame: odom        # 全局坐标系名（odom 或 map）
+
+    # ——— ⭐ 特色功能：加速度限制（0 = 关闭，瞬间响应）———
+    #   max_accel_linear  : 线速度最大变化率 m/s²
+    #   max_accel_angular : 角速度最大变化率 rad/s²
+    #   ⭐ 设成 0 就是原来的"瞬间响应"，可以对比着看
+    max_accel_linear: 1.0
+    max_accel_angular: 3.0
+
+    # ——— 四个轮子各自的 PID（作业要求：一个 PID 对应一个轮子）———
+    # 每一项对应 control_toolbox::Pid::init() 读的参数
+    left_front_wheel_joint_pid:
+      p: 0.5
+      i: 0.0
+      d: 0.0
+      i_clamp: 0.0
+    right_front_wheel_joint_pid:
+      p: 0.5
+      i: 0.0
+      d: 0.0
+      i_clamp: 0.0
+    left_back_wheel_joint_pid:
+      p: 0.5
+      i: 0.0
+      d: 0.0
+      i_clamp: 0.0
+    right_back_wheel_joint_pid:
+      p: 0.5
+      i: 0.0
+      d: 0.0
+      i_clamp: 0.0
