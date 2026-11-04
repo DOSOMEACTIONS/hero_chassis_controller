@@ -1,0 +1,12 @@
+# ROS C++ Style（roslint / cpplint 认可）
+# ⚠️ BreakBeforeBraces 必须是 Allman：roslint 的 cpplint_wrapper 强制大括号另起一行
+# ⚠️ ColumnLimit 必须是 80：cpplint 默认行宽
+Language: Cpp
+BasedOnStyle: Google
+BreakBeforeBraces: Allman
+ColumnLimit: 80
+ReflowComments: true
+IndentWidth: 2
+DerivePointerAlignment: false
+PointerAlignment: Left
+Standard: Cpp11

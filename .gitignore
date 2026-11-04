@@ -1,0 +1,19 @@
+# 编译产物
+build/
+devel/
+*.o
+*.so
+*.a
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python
+__pycache__/
+*.pyc
+
+# 其它
+*.log
