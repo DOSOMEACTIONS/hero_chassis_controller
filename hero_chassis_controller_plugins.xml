@@ -1,0 +1,7 @@
+<library path="lib/libhero_chassis_controller">
+  <class name="hero_chassis_controller/DriveController"
+         type="hero_chassis_controller::DriveController"
+         base_class_type="controller_interface::ControllerBase">
+    <description>开 duration 秒然后停</description>
+  </class>
+</library>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hero_chassis_controller</name>
+  <version>0.0.1</version>
+  <description>麦克纳姆轮底盘控制器：逆运动学、PID 速度闭环、正运动学里程计、TF 广播、世界坐标系速度模式、加速度限制</description>
+  <maintainer email="2900935791@qq.com">DOSOMEACTIONS</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <build_depend>roslint</build_depend>
+  <depend>controller_interface</depend>
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  <depend>control_toolbox</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf</depend>
+  <depend>controller_manager</depend>
+  <export>
+    <controller_interface plugin="${prefix}/hero_chassis_controller_plugins.xml"/>
+  </export>
+</package>
