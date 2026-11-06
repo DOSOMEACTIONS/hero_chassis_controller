@@ -30,23 +30,35 @@ controller:
 
     # ——— 四个轮子各自的 PID（作业要求：一个 PID 对应一个轮子）———
     # 每一项对应 control_toolbox::Pid::init() 读的参数
+    # ⭐⭐ PID 调参记录（用 rqt_plot 看曲线 + rqt_reconfigure 在线改，最终固化到这里）
+    #
+    #   p（比例）：影响响应速度。p=0.5 时轮速 0.14 s 到目标附近，且不打滑。
+    #   i（积分）：消稳态误差。实测三组：
+    #        i=0    → 稳态误差 +0.36 rad/s（5.5%）
+    #        i=2.0  → 误差 -0.065（-1.0%，略过冲）
+    #        i=1.0  → 误差 +0.001（0.02%）  ← 选这个
+    #   d（微分）：抑制超调。实测 kd=0.005 时滑行距离反而从 0.55 m 变 0.59 m
+    #        （对实际转速求导，减速时 D 会给出正向力矩），kd=0.01 直接发散。
+    #        → 结论：本底盘上 D 无益，定为 0（这是实测结论，不是没调）
+    #   i_clamp（积分限幅）：防止积分饱和。0.3 对应最大补偿约 0.3 N·m。
+    #
     left_front_wheel_joint_pid:
       p: 0.5
-      i: 0.0
+      i: 1.0
       d: 0.0
-      i_clamp: 0.0
+      i_clamp: 0.3
     right_front_wheel_joint_pid:
       p: 0.5
-      i: 0.0
+      i: 1.0
       d: 0.0
-      i_clamp: 0.0
+      i_clamp: 0.3
     left_back_wheel_joint_pid:
       p: 0.5
-      i: 0.0
+      i: 1.0
       d: 0.0
-      i_clamp: 0.0
+      i_clamp: 0.3
     right_back_wheel_joint_pid:
       p: 0.5
-      i: 0.0
+      i: 1.0
       d: 0.0
-      i_clamp: 0.0
+      i_clamp: 0.3
